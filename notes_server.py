@@ -48,4 +48,4 @@ def new_note():
 
     return json.dumps(newnote_json, default=json_util.default)
 
-run(host='localhost', port=8080)
+run(server='paste',host='localhost')
