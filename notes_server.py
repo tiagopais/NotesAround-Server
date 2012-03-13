@@ -48,4 +48,4 @@ def new_note():
 
     return json.dumps(newnote_json, default=json_util.default)
 
-run(server=PasteServer,host='localhost')
+#run(server=PasteServer,host='localhost')
