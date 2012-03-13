@@ -1,6 +1,6 @@
 import json
 from pymongo import Connection, json_util
-from bottle import get, post, run, request, response
+from bottle import get, post, run, request, response, PasteServer
 from pymongo.objectid import ObjectId
 
 def get_notes_collection():
@@ -48,4 +48,4 @@ def new_note():
 
     return json.dumps(newnote_json, default=json_util.default)
 
-run(server='PasteServer',host='localhost')
+run(server=PasteServer,host='localhost')
