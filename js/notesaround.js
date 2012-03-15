@@ -18,7 +18,7 @@ var app =  new function () {
             $.PeriodicalUpdater('/api/notes', {
                                     method: 'GET',
                                     type: 'json',
-                                    maxTimeout: 5000,
+                                    maxTimeout: 15000,
                                     runatonce: true
                                 },
                                 function (notes, success, xhr, handle) {
