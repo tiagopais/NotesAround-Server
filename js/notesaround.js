@@ -47,7 +47,7 @@ var app =  new function () {
         complementNote: function (noteMarker) {
             var contentString =
                 '<div id="content">' +
-                    '<div id="bodyContent">' +  + '</div>' +
+                    '<div id="bodyContent">' + noteMarker.title + '</div>' +
                 '</div>'
 
             var infowindow = new google.maps.InfoWindow({content:contentString});
