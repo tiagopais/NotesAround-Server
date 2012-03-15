@@ -23,7 +23,10 @@ var app =  new function () {
                                 },
                                 function (notes, success, xhr, handle) {
                                     for (note in notes) {
-                                        that.displayNote(notes[note]);
+
+                                        if (notes[note].note) {
+                                            that.displayNote(notes[note]);
+                                        }
                                     }
                                 });
         },
@@ -44,7 +47,7 @@ var app =  new function () {
         complementNote: function (noteMarker) {
             var contentString =
                 '<div id="content">' +
-                    '<div id="bodyContent">' + noteMarker.title + '</div>' +
+                    '<div id="bodyContent">' +  + '</div>' +
                 '</div>'
 
             var infowindow = new google.maps.InfoWindow({content:contentString});
