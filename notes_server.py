@@ -1,6 +1,6 @@
 import json
 from pymongo import Connection, json_util
-from bottle import get, post, request, response
+from bottle import get, post, route, request, response, static_file
 from pymongo.objectid import ObjectId
 
 def get_notes_collection():
@@ -49,3 +49,9 @@ def new_note():
     return json.dumps(newnote_json, default=json_util.default)
 
 
+@route('/:path#.*#')
+def server_static(path):
+    if not path:
+        path = "index.html"
+
+    return static_file(path, root='./')
