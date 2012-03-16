@@ -29,39 +29,37 @@ var app =  new function () {
                                 },
                                 function (notes, success, xhr, handle) {
                                     for (note in notes) {
-                                        that.displayNote(notes[note]);
+
+                                        if (notes[note].note) {
+                                            that.displayNote(notes[note]);
+                                        }
                                     }
                                 });
         },
 
         displayNote: function(note) {
             var that = this;
-            var spot = new google.maps.Marker({
+            var noteMarker = new google.maps.Marker({
                                                   position: new google.maps.LatLng(note.loc[0],
                                                                                    note.loc[1]),
                                                   map: me.appMap,
                                                   icon: 'img/icon.png',
-                                                  title : 'Bananinhas'
+                                                  title : note.note
                                               });
 
-            that.complementNote(spot);
+            that.complementNote(noteMarker);
         },
 
-        complementNote: function (spot) {
-            var contentString = '<div id="content">' +
-                '<div id="siteNotice">' +
-                '</div>' +
-                '<h2 id="firstHeading" class="firstHeading">Example marker</h2>' +
-                '<div id="bodyContent">' +
-                '<p><b>The example marker with post text:</b>,' +
-                '<p>post</p> ' +
-                '</div>' +
+        complementNote: function (noteMarker) {
+            var contentString =
+                '<div id="content">' +
+                    '<div id="bodyContent">' + noteMarker.title + '</div>' +
                 '</div>'
 
             var infowindow = new google.maps.InfoWindow({content:contentString});
 
-            google.maps.event.addListener(spot, 'click', function () {
-                infowindow.open(me.appMap, spot);
+            google.maps.event.addListener(noteMarker, 'click', function () {
+                infowindow.open(me.appMap, noteMarker);
             });
         },
 
