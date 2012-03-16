@@ -40,12 +40,13 @@ var app =  new function () {
         displayNote: function(note) {
             var that = this;
             var noteMarker = new google.maps.Marker({
-                                                        position: new google.maps.LatLng(note.loc[0],
-                                                                                         note.loc[1]),
-                                                        map: me.appMap,
-                                                        icon: 'img/icon.png',
-                                                        title : note.note
-                                                    });
+                                                  position: new google.maps.LatLng(note.loc[0],
+                                                                                   note.loc[1]),
+                                                  map: me.appMap,
+                                                  animation: google.maps.Animation.DROP,
+                                                  icon: 'img/icon.png',
+                                                  title : note.note
+                                              });
 
             that.complementNote(noteMarker);
         },
@@ -89,7 +90,7 @@ var app =  new function () {
                                                              // Log that this is the initial position.
                                                              console.log( "Position Found" );
                                                              var calculatedPosition = new google.maps.LatLng(position.coords.latitude,
-                                                                                                             position.coords.longitude);
+                                                                 position.coords.longitude);
                                                              if(me.currentPosition===undefined) {
                                                                  me.appMap.setCenter(calculatedPosition);
                                                              }
