@@ -33,7 +33,7 @@ class TestPOST(unittest.TestCase):
 
     def test_newnote(self):
         responseheaders, response = POST("http://localhost:8080/api/note",
-                        params = {'note' : '{"text" : "Note test", "loc" : [%s, %s]}' % (random.uniform(-90,90), random.uniform(-180,180))},
+                        params = {'note' : '{"note" : "Note test", "loc" : [%s, %s]}' % (random.uniform(-90,90), random.uniform(-180,180))},
                         async = False, resp=True)
 
         self.assertTrue(response)

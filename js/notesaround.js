@@ -1,4 +1,9 @@
 var app =  new function () {
+    var myOptions = {
+        center: new google.maps.LatLng(-34.397, 150.644),
+        zoom: 8,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
     var me = this;
     var appMap;
     var currentPosition;
@@ -7,9 +12,8 @@ var app =  new function () {
         init : function() {
             var that = this;
             this.updateCurrentPosition();
-            me.appMap = new google.maps.Map(document.getElementById("map_canvas"),
-                {center: new google.maps.LatLng(-34.397, 150.644),zoom: 8,
-                mapTypeId: google.maps.MapTypeId.ROADMAP});
+            me.appMap = new google.maps.Map(document.getElementById("map_canvas"),myOptions);
+
 
             $.PeriodicalUpdater('/api/notes', {
                                     method: 'GET',
@@ -24,11 +28,6 @@ var app =  new function () {
                                 });
         },
 
-        goTo : function (position) {
-            if(position != undefined) {
-                me.appMap.setCenter(position);
-            }
-        },
         displayNote: function(note) {
             var that = this;
             var spot = new google.maps.Marker({
