@@ -2,7 +2,13 @@ var app =  new function () {
     var myOptions = {
         center: new google.maps.LatLng(-34.397, 150.644),
         zoom: 17,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        mapTypeControl: false,
+        zoomControl: false,
+        panControl : false,
+        rotateControl : false,
+        scaleControl : false,
+        overviewMapControl : false
     };
     var me = this;
     var appMap;
