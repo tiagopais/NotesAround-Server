@@ -59,10 +59,9 @@ var app =  new function () {
 
         putMarker: function(image) {
             this.updateCurrentPosition();
-            var post = document.getElementById("textToPost").value||"Default";
+            var post = document.getElementById("textToPost").value;
 
-            $.post("/api/note", 'note=' + JSON.stringify({ 'loc': [me.currentPosition.lat(), me.currentPosition.lng()] }));
-
+            $.post("/api/note", 'note=' + JSON.stringify({ 'note' : post , 'loc': [me.currentPosition.lat(), me.currentPosition.lng()] }));
         } ,
 
         updateCurrentPosition : function() {
