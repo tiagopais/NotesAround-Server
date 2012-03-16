@@ -43,6 +43,7 @@ var app =  new function () {
                                                   position: new google.maps.LatLng(note.loc[0],
                                                                                    note.loc[1]),
                                                   map: me.appMap,
+                                                  animation: google.maps.Animation.DROP,
                                                   icon: 'img/icon.png',
                                                   title : note.note
                                               });
