@@ -40,27 +40,37 @@ var app =  new function () {
         displayNote: function(note) {
             var that = this;
             var noteMarker = new google.maps.Marker({
-                                                  position: new google.maps.LatLng(note.loc[0],
-                                                                                   note.loc[1]),
-                                                  map: me.appMap,
-                                                  icon: 'img/icon.png',
-                                                  title : note.note
-                                              });
+                                                        position: new google.maps.LatLng(note.loc[0],
+                                                                                         note.loc[1]),
+                                                        map: me.appMap,
+                                                        icon: 'img/icon.png',
+                                                        title : note.note
+                                                    });
 
             that.complementNote(noteMarker);
         },
 
         complementNote: function (noteMarker) {
-            var contentString =
-                '<div id="content">' +
-                    '<div id="bodyContent">' + noteMarker.title + '</div>' +
-                '</div>'
+            var that = this;
+            NotesAround.search({
+                                   query: noteMarker.title,
+                                   engine: 'google',
+                                   preprocessor: 'yahoo',
+                                   callback: function (results) {
+                                       var img = '<a href="' + results[0].url + '" target="_blank"><img width="' + results[0].tbWidth + '" src="' + results[0].tbUrl + '"></a>';
+                                       var contentString =
+                                           '<div id="content">' +
+                                               '<div id="imgContent">' + img + '</div>' +
+                                               '<div id="bodyContent">' + noteMarker.title + '</div>' +
+                                           '</div>'
 
-            var infowindow = new google.maps.InfoWindow({content:contentString});
+                                       var infowindow = new google.maps.InfoWindow({content:contentString});
 
-            google.maps.event.addListener(noteMarker, 'click', function () {
-                infowindow.open(me.appMap, noteMarker);
-            });
+                                       google.maps.event.addListener(noteMarker, 'click', function () {
+                                           infowindow.open(me.appMap, noteMarker);
+                                       });
+                                   }
+                               });
         },
 
         putMarker: function(image) {
@@ -79,7 +89,7 @@ var app =  new function () {
                                                              // Log that this is the initial position.
                                                              console.log( "Position Found" );
                                                              var calculatedPosition = new google.maps.LatLng(position.coords.latitude,
-                                                                 position.coords.longitude);
+                                                                                                             position.coords.longitude);
                                                              if(me.currentPosition===undefined) {
                                                                  me.appMap.setCenter(calculatedPosition);
                                                              }
