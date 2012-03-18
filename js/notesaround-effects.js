@@ -54,9 +54,9 @@ NotesAround_FX = {
     },
     logalaisso: function(event) {
         if(event.type==='deviceorientation') {
-            console.log('teve evento ' + event.accelerationIncludingGravity.x  + ';' +event.accelerationIncludingGravity.y + ';' + event.accelerationIncludingGravity.z);
-        } else if(event.type==='devicemotion') {
             console.log('teve evento ' + event.beta + ';' +event.gamma + ';' + event.alpha);
+        } else if(event.type==='devicemotion') {
+            console.log('teve evento ' + event.accelerationIncludingGravity.x  + ';' +event.accelerationIncludingGravity.y + ';' + event.accelerationIncludingGravity.z);
         } else if(event.type==='MozOrientation') {
             console.log('teve evento ' + event.orientation.x + ';' +event.orientation.y + ';' + event.orientation.z);
         } else {
