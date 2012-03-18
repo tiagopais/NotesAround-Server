@@ -76,10 +76,16 @@ var app =  new function () {
 
         putMarker: function(image) {
             this.updateCurrentPosition();
+            var that = this;
             var postBox = $("#textToPost");
             var post = postBox.val();
 
-            $.post("/api/note", 'note=' + JSON.stringify({ 'note' : post , 'loc': [me.currentPosition.lat(), me.currentPosition.lng()] }));
+            $.post("/api/note", 'note=' + JSON.stringify({ 'note' : post , 'loc': [me.currentPosition.lat(), me.currentPosition.lng()] }),
+            function (new_note) {
+                if (new_note.note) {
+                    that.displayNote(new_note);
+                }
+            });
 
             postBox.val('');
         } ,
