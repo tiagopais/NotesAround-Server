@@ -18,7 +18,8 @@ def get_notes():
 
     notes = get_notes_collection()
 
-    most_recent_notes = list(notes.find({ "loc" : { "$exists" : "true" } }).sort({"timestamp" : "-1"}).limit(10))
+#    most_recent_notes = list(notes.find({ "loc" : { "$exists" : "true" } }).sort({"timestamp" : "-1"}).limit(10))
+    most_recent_notes = list(notes.find({ "loc" : { "$exists" : "true" } }).sort({"_id" : "-1"}))
 
     return json.dumps(most_recent_notes, default=json_util.default)
 
