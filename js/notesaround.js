@@ -48,12 +48,13 @@ var app =  new function () {
         },
 
         clearMarkers : function() {
+            console.log("Clearing all markers...");
+
             if (me.markers) {
                 for (var i = 0; i < me.markers.length; i++ ) {
+                    console.log("Clearing... " + me.markers[i] + " -> " + me.markers[i].title);
                     me.markers[i].setMap(null);
                 }
-
-                me.markers = [];
             }
         },
 
@@ -121,8 +122,8 @@ var app =  new function () {
                                                              if(me.currentPosition===undefined) {
                                                                  me.appMap.setCenter(calculatedPosition);
                                                              }
-                                                             me.currentPosition = calculatedPosition;
 
+                                                             me.currentPosition = calculatedPosition;
                                                          },
                                                          function( error ){
                                                              console.log( "Something went wrong: ", error );
