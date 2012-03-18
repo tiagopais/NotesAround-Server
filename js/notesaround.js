@@ -27,7 +27,7 @@ var app =  new function () {
                     app.putMarker('img/icon.png');
                 }
             });
-            NotesAround_FX.bindToAccelerometer(NotesAround_FX.logalaisso);
+            NotesAround_FX.bindToAccelerometer(NotesAround_FX.eraseOnTilt);
 
             $.PeriodicalUpdater('/api/notes', {
                                     method: 'GET',
@@ -135,6 +135,16 @@ var app =  new function () {
                                                          } );
             } else {
                 alert('I guess this browser does not support geolocation!')
+            }
+        },
+
+        bounceMarkers : function() {
+            for(marker in me.markers) {
+                if(me.markers[marker].animation !== google.maps.Animation.BOUNCE) {
+                    me.markers[marker].setAnimation(google.maps.Animation.BOUNCE);
+                } else {
+                    me.markers[marker].setAnimation(null);
+                }
             }
         }
     }

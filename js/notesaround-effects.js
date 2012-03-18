@@ -11,26 +11,24 @@ NotesAround_FX = {
     bindToAccelerometer : function(callback) {
         if (window.DeviceMotionEvent) {
             window.addEventListener('devicemotion', function (event) {
-               /* callback([event.accelerationIncludingGravity.x * 2,
-                    event.accelerationIncludingGravity.y * 2,
-                    event.accelerationIncludingGravity.z * 2]);*/
-                callback(event);
+                callback(event.acceleration.x * 2,
+                    event.acceleration.y * 2,
+                    event.acceleration.z * 2);
             }, true);
         } else  if (window.DeviceOrientationEvent) {
                 window.addEventListener("deviceorientation", function (event) {
-                    //callback([event.beta, event.gamma,event.alpha]);
-                    callback(event);
+                    callback(event.beta, event.gamma,event.alpha);
                 }, true);
         } else {
             window.addEventListener("MozOrientation", function (event) {
-                //callback([event.orientation.x * 50, event.orientation.y * 50,event.orientation.z * 50]);
-                callback(event);
+                callback(event.orientation.x * 50, event.orientation.y * 50,event.orientation.z * 50);
             }, true);
         }
     },
 
     eraseOnTilt : function(accx,accy,accz) {
-        var sensitivity = 20;
+        var sensitivity = 31;
+        //console.log('Posicao ' + accx + ';' +accy+ ';' + accz);
         this.last_x = accx;
         this.last_y = accy;
         this.last_z = accz;
@@ -38,12 +36,14 @@ NotesAround_FX = {
         // Periodically check the position and fire
         // if the change is greater than the sensitivity
         setInterval(function () {
+
             var change = Math.abs(this.last_x-this.last_x2+
                 this.last_y-this.last_y2+
                 this.last_z-this.last_z2);
 
             if (change > sensitivity) {
-                alert('Shake!');
+                console.log('bouncing');
+                app.bounceMarkers();
             }
 
             // Update new position
