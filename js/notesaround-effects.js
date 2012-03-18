@@ -11,11 +11,13 @@ NotesAround_FX = {
     bindToAccelerometer : function(callback) {
         if (window.DeviceOrientationEvent) {
             window.addEventListener("deviceorientation", function () {
-                callback([event.beta, event.gamma,eventData.alpha]);
+                callback([event.beta, event.gamma,event.alpha]);
             }, true);
         } else if (window.DeviceMotionEvent) {
             window.addEventListener('devicemotion', function () {
-                callback([event.acceleration.x * 2, event.acceleration.y * 2, event.acceleration.z * 2]);
+                callback([event.accelerationIncludingGravity.x * 2,
+                    event.accelerationIncludingGravity.y * 2,
+                    event.accelerationIncludingGravity.z * 2]);
             }, true);
         } else {
             window.addEventListener("MozOrientation", function () {
