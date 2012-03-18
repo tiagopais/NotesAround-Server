@@ -43,3 +43,4 @@ class TestPOST(unittest.TestCase):
         django_note = json.loads(response)
 
         self.assertTrue(django_note)
+
