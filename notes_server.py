@@ -1,5 +1,4 @@
 import json
-from bson.timestamp import Timestamp
 from datetime import datetime
 from pymongo import Connection, json_util
 from bottle import get, post, route, request, response, static_file
@@ -50,6 +49,14 @@ def new_note():
     notes.insert(newnote_json)
 
     return json.dumps(newnote_json, default=json_util.default)
+
+#@get('/websocket', apply=[websocket])
+#def echo(ws):
+#    while True:
+#        msg = ws.receive()
+#        if msg is not None:
+#            ws.send(msg)
+#        else: break
 
 @route('/:path#.*#')
 def server_static(path):

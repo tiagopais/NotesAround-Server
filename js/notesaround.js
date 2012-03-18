@@ -13,12 +13,14 @@ var app =  new function () {
     var me = this;
     var appMap;
     var currentPosition;
+    var markers;
 
     return {
         init : function() {
             var that = this;
             this.updateCurrentPosition();
             me.appMap = new google.maps.Map(document.getElementById("map_canvas"),myOptions);
+            me.markers = [];
 
             $("#textToPost").keypress(function(event) {
                 if ( event.which == 13 ) {
@@ -35,6 +37,7 @@ var app =  new function () {
                                     runatonce: true
                                 },
                                 function (notes, success, xhr, handle) {
+                                    that.clearMarkers();
                                     for (note in notes) {
 
                                         if (notes[note].note) {
@@ -42,6 +45,16 @@ var app =  new function () {
                                         }
                                     }
                                 });
+        },
+
+        clearMarkers : function() {
+            if (me.markers) {
+                for (var i = 0; i < me.markers.length; i++ ) {
+                    me.markers[i].setMap(null);
+                }
+
+                me.markers = [];
+            }
         },
 
         displayNote: function(note) {
@@ -54,6 +67,7 @@ var app =  new function () {
                                                   icon: 'img/icon.png',
                                                   title : note.note
                                               });
+            me.markers.push(noteMarker);
 
             that.complementNote(noteMarker);
         },
