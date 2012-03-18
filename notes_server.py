@@ -3,6 +3,7 @@ from bson.timestamp import Timestamp
 from datetime import datetime
 from pymongo import Connection, json_util
 from bottle import get, post, route, request, response, static_file
+from pymongo import DESCENDING
 from pymongo.objectid import ObjectId
 
 def get_notes_collection():
@@ -18,8 +19,8 @@ def get_notes():
 
     notes = get_notes_collection()
 
-#    most_recent_notes = list(notes.find({ "loc" : { "$exists" : "true" } }).sort({"timestamp" : "-1"}).limit(10))
-    most_recent_notes = list(notes.find({ "loc" : { "$exists" : "true" } }).sort({"_id" : "-1"}))
+    most_recent_notes = list(notes.find({ "loc" : { "$exists" : "true" } }).sort("timestamp", DESCENDING).limit(10))
+#    most_recent_notes = list(notes.find({ "loc" : { "$exists" : "true" } }).sort("_id", DESCENDING))
 
     return json.dumps(most_recent_notes, default=json_util.default)
 
