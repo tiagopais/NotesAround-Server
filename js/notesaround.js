@@ -30,7 +30,7 @@ var app =  new function () {
             $.PeriodicalUpdater('/api/notes', {
                                     method: 'GET',
                                     type: 'json',
-                                    maxTimeout: 15000,
+                                    maxTimeout: 60000,
                                     runatonce: true
                                 },
                                 function (notes, success, xhr, handle) {
