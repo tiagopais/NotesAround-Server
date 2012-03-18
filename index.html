@@ -5,7 +5,7 @@
 
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <link rel="stylesheet" type="text/css" href="css/notesaround.css" />
-
+    <link href='http://fonts.googleapis.com/css?family=Averia+Sans+Libre' rel='stylesheet' type='text/css'>
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAjeEi63VJhxfGjuIrf6SEEc73LPYJx99o&sensor=true"></script>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript" src="js/notesaround-search.js"></script>
@@ -18,14 +18,17 @@
 <h1>Notes Around</h1>
 <div id="map_canvas" style="width:100%; height:100%"></div>
 <div class="postBox">
-    <h3>Drop your note</h3>
-    <div id="postBox" style="float: left; ">
-        <input type="text" id="textToPost" name="textToPost" placeholder="Type something to post" size="50"/>
-    </div>
-    <div id="buttons" style="float:left;">
-        <button onclick="app.putMarker('img/icon.png')">Post</button>
-    </div>
-<div style="float: none"></div>
+    <h3>Drop your note...</h3>
+    <form>
+        <div id="postBox" style="float: left; width: 80%">
+            <input type="text" id="textToPost" name="textToPost" placeholder="Type something to post"/>
+        </div>
+        <div id="buttons" style="float:left;width: 20%">
+            <input type="submit" class="submitButton" onsubmit="app.putMarker('img/icon.png')" value="Post"/>
+        </div>
+
+        <div style="float: none"></div>
+    </form>
 </div>
 </body>
 </html>
