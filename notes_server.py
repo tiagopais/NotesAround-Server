@@ -48,7 +48,6 @@ def new_note():
 
     return json.dumps(newnote_json, default=json_util.default)
 
-
 @route('/:path#.*#')
 def server_static(path):
     if not path:

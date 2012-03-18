@@ -23,17 +23,13 @@
         <input type="text" id="textToPost" name="textToPost" placeholder="Type something to post"/>
     </div>
     <div id="buttons" style="float:left;width: 20%">
-        <input type="submit" class="submitButton" onclick="app.putMarker('img/icon.png')" value="Post"/>
+        <input type="button" class="submitButton" onclick="app.putMarker('img/icon.png')" value="Post"/>
     </div>
 
     <div style="float: none"></div>
 </div>
 <script>
-    $("#textToPost").keypress(function(event) {
-        if ( event.which == 13 ) {
-            app.putMarker('img/icon.png');
-        }
-    });
+
 </script>
 </body>
 </html>

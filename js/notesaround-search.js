@@ -4,10 +4,6 @@
 
 google.load('search', '1');
 
-// EXTRACAO DE KEYWORDS
-//http://search.yahooapis.com/ContentAnalysisService/V1/termExtraction
-//http://search.yahooapis.com/ContentAnalysisService/V1/termExtraction?appid=YahooDemo&context=tava%20eu%20muito%20bem%20no%20marques%20de%20pombal
-
 NotesAround = {
 
 	search: function (config) {
@@ -103,10 +99,7 @@ NotesAround = {
 	preprocessors: {
 		yahoo: {
 			process: function (query, callback) {
-//				$.ajax('http://search.yahooapis.com/ContentAnalysisService/V1/termExtraction?output=json&appid=YahooDemo&context=tava%20eu%20muito%20bem%20no%20marques%20de%20pombal', {
-				        //http://search.yahooapis.com/ContentAnalysisService/V1/termExtraction?output=json&appid=YahooDemo&context=Estava+eu+muito+bem+no+marqu%C3%AAs+quando+decidi+largar+uma+poia.&_=1331858543509
 				$.ajax('http://search.yahooapis.com/ContentAnalysisService/V1/termExtraction?appid=YahooDemo', {
-//				$.ajax('http://search.yahooapis.com/ContentAnalysisService/V1/termExtraction?output=json&appid=YahooDemo&context=' + query, {
 					dataType: "jsonp",
 					jsonp: "callback",
 					method: 'POST',

@@ -20,6 +20,11 @@ var app =  new function () {
             this.updateCurrentPosition();
             me.appMap = new google.maps.Map(document.getElementById("map_canvas"),myOptions);
 
+            $("#textToPost").keypress(function(event) {
+                if ( event.which == 13 ) {
+                    app.putMarker('img/icon.png');
+                }
+            });
 
             $.PeriodicalUpdater('/api/notes', {
                                     method: 'GET',
@@ -111,7 +116,6 @@ var app =  new function () {
                                                              timeout: (5 * 1000),
                                                              maximumAge: (1000 * 60 * 15),
                                                              enableHighAccuracy: true
-                                                             //bypass to chrome dev
                                                          } );
             } else {
                 alert('I guess this browser does not support geolocation!')
