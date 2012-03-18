@@ -4,7 +4,7 @@ var app =  new function () {
         zoom: 17,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         mapTypeControl: false,
-        zoomControl: false,
+        zoomControl: true,
         panControl : false,
         rotateControl : false,
         scaleControl : false,
