@@ -25,7 +25,7 @@ var app =  new function () {
                     app.putMarker('img/icon.png');
                 }
             });
-            NotesAround_FX.bindToAccelerometer(NotesAround_FX.eraseOnTilt);
+            NotesAround_FX.bindToAccelerometer(NotesAround_FX.logalaisso);
 
             $.PeriodicalUpdater('/api/notes', {
                                     method: 'GET',

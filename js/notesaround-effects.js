@@ -9,19 +9,22 @@ NotesAround_FX = {
 
 
     bindToAccelerometer : function(callback) {
-        if (window.DeviceOrientationEvent) {
-            window.addEventListener("deviceorientation", function () {
-                callback([event.beta, event.gamma,event.alpha]);
-            }, true);
-        } else if (window.DeviceMotionEvent) {
-            window.addEventListener('devicemotion', function () {
-                callback([event.accelerationIncludingGravity.x * 2,
+        if (window.DeviceMotionEvent) {
+            window.addEventListener('devicemotion', function (event) {
+               /* callback([event.accelerationIncludingGravity.x * 2,
                     event.accelerationIncludingGravity.y * 2,
-                    event.accelerationIncludingGravity.z * 2]);
+                    event.accelerationIncludingGravity.z * 2]);*/
+                callback(event);
             }, true);
+        } else  if (window.DeviceOrientationEvent) {
+                window.addEventListener("deviceorientation", function (event) {
+                    //callback([event.beta, event.gamma,event.alpha]);
+                    callback(event);
+                }, true);
         } else {
-            window.addEventListener("MozOrientation", function () {
-                callback([orientation.x * 50, orientation.y * 50,orientation.z * 50]);
+            window.addEventListener("MozOrientation", function (event) {
+                //callback([event.orientation.x * 50, event.orientation.y * 50,event.orientation.z * 50]);
+                callback(event);
             }, true);
         }
     },
@@ -48,7 +51,19 @@ NotesAround_FX = {
             this.last_y2 = this.last_y;
             this.last_z2 = this.last_z;
         }, 150);
+    },
+    logalaisso: function(event) {
+        if(event.type==='deviceorientation') {
+            console.log('teve evento ' + event.accelerationIncludingGravity.x  + ';' +event.accelerationIncludingGravity.y + ';' + event.accelerationIncludingGravity.z);
+        } else if(event.type==='devicemotion') {
+            console.log('teve evento ' + event.beta + ';' +event.gamma + ';' + event.alpha);
+        } else if(event.type==='MozOrientation') {
+            console.log('teve evento ' + event.orientation.x + ';' +event.orientation.y + ';' + event.orientation.z);
+        } else {
+            console.log('outro ' + event.type);
+        }
     }
+
 
 }
 
