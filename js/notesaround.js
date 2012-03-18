@@ -24,7 +24,7 @@ var app =  new function () {
 
             $("#textToPost").keypress(function(event) {
                 if ( event.which == 13 ) {
-                    app.putMarker('img/icon.png');
+                    app.putMarker();
                 }
             });
             NotesAround_FX.bindToAccelerometer(NotesAround_FX.eraseOnTilt);
@@ -96,7 +96,7 @@ var app =  new function () {
                                });
         },
 
-        putMarker: function(image) {
+        putMarker: function() {
             this.updateCurrentPosition();
             var that = this;
             var postBox = $("#textToPost");
