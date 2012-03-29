@@ -54,7 +54,9 @@ var app =  new function () {
                 for (var i = 0; i < me.markers.length; i++ ) {
                     console.log("Clearing... " + me.markers[i] + " -> " + me.markers[i].title);
                     me.markers[i].setMap(null);
+                    me.markers[i] = null;
                 }
+               me.length = 0;
             }
         },
 
@@ -65,7 +67,7 @@ var app =  new function () {
                                                                                    note.loc[1]),
                                                   map: me.appMap,
                                                   animation: google.maps.Animation.DROP,
-                                                  icon: 'img/icon.png',
+                                                  icon: 'img/marker.png',
                                                   title : note.note
                                               });
             me.markers.push(noteMarker);
@@ -147,6 +149,10 @@ var app =  new function () {
                     me.markers[marker].setAnimation(null);
                 }
             }
+        },
+
+        aboutUs : function() {
+            NOTESAROUND_ABOUT.showAbout(me.markers,me.appMap);
         }
     }
 

@@ -82,3 +82,15 @@ textarea {
     -o-transition: background-position 0.1s linear;
     transition: background-position 0.1s linear;
 }
+
+.imgContent{
+    width:150px;
+    padding-right: 20px;
+    float: left;
+}
+
+.bodyContent{
+    font-family: 'Averia Sans Libre', cursive, Arial, serif; font-weight: 200;
+    width: 300px;
+    float: left;
+}
