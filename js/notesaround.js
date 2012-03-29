@@ -1,15 +1,18 @@
 var app =  new function () {
-    var myOptions = {
-        center: new google.maps.LatLng(-34.397, 150.644),
-        zoom: 17,
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-        mapTypeControl: false,
-        zoomControl: true,
-        panControl : false,
-        rotateControl : false,
-        scaleControl : false,
-        overviewMapControl : false
-    };
+	var myOptions = {
+		center: new google.maps.LatLng(-34.397, 150.644),
+		zoom: 17,
+		mapTypeId: google.maps.MapTypeId.ROADMAP,
+		mapTypeControl: false,
+		zoomControl: true,
+		zoomControlOptions: {
+			position: google.maps.ControlPosition.TOP_LEFT
+		},
+		panControl: false,
+		rotateControl: false,
+		scaleControl: false,
+		overviewMapControl: false
+	};
     var me = this;
     var appMap;
     var currentPosition;
