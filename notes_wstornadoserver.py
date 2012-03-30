@@ -49,6 +49,8 @@ application = tornado.web.Application([
 ], **settings)
 
 if __name__ == "__main__":
+    tornado.options.parse_command_line()
+
     logging.info("Starting Tornado web server on http://127.0.0.1:9090")
     http_server = tornado.httpserver.HTTPServer(application)
     http_server.listen(port=9090, address="127.0.0.1")
