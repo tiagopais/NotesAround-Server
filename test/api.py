@@ -18,6 +18,7 @@ class TestPOST(unittest.TestCase):
         django_notes = json.loads(response_allnotes)
 
         self.assertTrue(django_notes)
+        self.assertTrue(len(django_notes) <= 10)
 
     def test_get_onenote(self):
         responseheaders, response_onenote = GET("http://localhost:8080/api/note/4f5e81e06c83ee214c000000",

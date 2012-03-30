@@ -1,7 +1,7 @@
 var app =  new function () {
     var myOptions = {
         center: new google.maps.LatLng(-34.397, 150.644),
-        zoom: 17,
+        zoom: 14,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         mapTypeControl: false,
         zoomControl: true,
@@ -66,7 +66,13 @@ var app =  new function () {
 
             if (me.markers) {
                 for (var i = 0; i < me.markers.length; i++ ) {
-                    console.log("Clearing... " + me.markers[i] + " -> " + me.markers[i].title);
+
+                    if (me.markers[i] !== null) {
+                        console.log("Clearing... " + me.markers[i] + " -> " + me.markers[i].title);
+                    } else {
+                        console.log("Clearing marker at... " + i);
+                    }
+
                     me.markers[i].setMap(null);
                     me.markers[i] = null;
                 }
@@ -86,7 +92,7 @@ var app =  new function () {
                                               });
             me.markers.push(noteMarker);
 
-            that.complementNote(noteMarker);
+//            that.complementNote(noteMarker);
         },
 
         complementNote: function (noteMarker) {
@@ -135,9 +141,8 @@ var app =  new function () {
                 navigator.geolocation.getCurrentPosition(function( position ){
                                                              // Log that this is the initial position.
                                                              console.log( "Position Found" );
-                                                             var calculatedPosition = new google.maps.LatLng(position.coords.latitude,
-                                                                 position.coords.longitude);
-                                                             if(me.currentPosition===undefined) {
+                                                             var calculatedPosition = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                                                             if (me.currentPosition === undefined) {
                                                                  me.appMap.setCenter(calculatedPosition);
                                                              }
 
@@ -148,8 +153,7 @@ var app =  new function () {
                                                              me.currentPosition =   new google.maps.LatLng(-34.397, 150.644);
                                                          },
                                                          {
-                                                             timeout: (5 * 1000),
-                                                             maximumAge: (1000 * 60 * 15),
+                                                             maximumAge:Infinity,
                                                              enableHighAccuracy: true
                                                          } );
             } else {
