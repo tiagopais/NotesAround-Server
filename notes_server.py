@@ -50,14 +50,6 @@ def new_note():
 
     return json.dumps(newnote_json, default=json_util.default)
 
-#@get('/websocket', apply=[websocket])
-#def echo(ws):
-#    while True:
-#        msg = ws.receive()
-#        if msg is not None:
-#            ws.send(msg)
-#        else: break
-
 @route('/:path#.*#')
 def server_static(path):
     if not path:

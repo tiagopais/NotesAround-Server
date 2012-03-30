@@ -1,22 +1,20 @@
 var app =  new function () {
-	var myOptions = {
-		center: new google.maps.LatLng(-34.397, 150.644),
-		zoom: 17,
-		mapTypeId: google.maps.MapTypeId.ROADMAP,
-		mapTypeControl: false,
-		zoomControl: true,
-		zoomControlOptions: {
-			position: google.maps.ControlPosition.TOP_LEFT
-		},
-		panControl: false,
-		rotateControl: false,
-		scaleControl: false,
-		overviewMapControl: false
-	};
+    var myOptions = {
+        center: new google.maps.LatLng(-34.397, 150.644),
+        zoom: 17,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        mapTypeControl: false,
+        zoomControl: true,
+        panControl : false,
+        rotateControl : false,
+        scaleControl : false,
+        overviewMapControl : false
+    };
     var me = this;
     var appMap;
     var currentPosition;
     var markers;
+    var socket;
 
     return {
         init : function() {
@@ -48,6 +46,19 @@ var app =  new function () {
                                         }
                                     }
                                 });
+
+            socket = new WebSocket('ws://127.0.0.1:9090/ws/note');
+            socket.onopen = function(event) {
+                console.log('Opened Connection to Note');
+            };
+
+            socket.onmessage = function(event) {
+                console.log('Received Note: ' + event.data);
+            }
+
+            socket.onclose = function(event) {
+                console.log('Closed Connection');
+            }
         },
 
         clearMarkers : function() {
@@ -107,12 +118,14 @@ var app =  new function () {
             var postBox = $("#textToPost");
             var post = postBox.val();
 
-            $.post("/api/note", 'note=' + JSON.stringify({ 'note' : post , 'loc': [me.currentPosition.lat(), me.currentPosition.lng()] }),
+            var noteAsJsonString = JSON.stringify({ 'note' : post , 'loc': [me.currentPosition.lat(), me.currentPosition.lng()] })
+            $.post("/api/note", 'note=' + noteAsJsonString,
             function (new_note) {
                 if (new_note.note) {
                     that.displayNote(new_note);
                 }
             });
+            socket.send(noteAsJsonString);
 
             postBox.val('');
         } ,
@@ -158,6 +171,5 @@ var app =  new function () {
             NOTESAROUND_ABOUT.showAbout(me.markers,me.appMap);
         }
     }
-
 }();
 
