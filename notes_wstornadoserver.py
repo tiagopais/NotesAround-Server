@@ -1,5 +1,7 @@
 __author__ = 'Tiago Pais'
 
+from tornado.options import logging
+
 import tornado.httpserver
 import tornado.websocket
 import tornado.ioloop
@@ -21,19 +23,19 @@ class RealtimeHandler(tornado.websocket.WebSocketHandler):
 
 class NoteHandler(tornado.websocket.WebSocketHandler):
     def open(self):
-        print "Connection opened"
+        logging.info("Connection opened")
 
         connected_users.append(self)
 
     def on_message(self, message):
-        print "New Note %s" % message
+        logging.info("New Note %s" % message)
 
         for connected_user in connected_users :
             if connected_user != self :
                 connected_user.write_message(message)
 
     def on_close(self):
-        print "Connection opened"
+        logging.info("Connection opened")
 
         connected_users.remove(self)
 
@@ -47,6 +49,7 @@ application = tornado.web.Application([
 ], **settings)
 
 if __name__ == "__main__":
+    logging.info("Starting Tornado web server on http://127.0.0.1:9090")
     http_server = tornado.httpserver.HTTPServer(application)
     http_server.listen(port=9090, address="127.0.0.1")
     tornado.ioloop.IOLoop.instance().start()
