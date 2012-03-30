@@ -19,13 +19,13 @@ class TestWebSockets(unittest.TestCase):
 
     def test_connect(self):
 
-        ws = EchoClient('ws://127.0.0.1:8080/ws/echo')
+        ws = EchoClient('ws://websockets.notesaround.com:81/ws/echo')
         ws.connect()
         ws.close()
 
     def test_send(self):
 
-        ws = EchoClient('ws://127.0.0.1:8080/ws/echo')
+        ws = EchoClient('ws://websockets.notesaround.com:81/ws/echo')
         ws.connect()
         ws.send("Here I am....")
         ws.close()
