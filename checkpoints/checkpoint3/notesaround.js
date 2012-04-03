@@ -48,11 +48,9 @@ var app =  new function () {
         },
 
         fetchNotes : function() {
-            $.ajax({
-                url: 'http://www.notesaround.com/api/notes',
-                context: document.body
-            }).done(function (notes, success, xhr, handle) {
-                    for (note in notes) {
+            var that = this;
+            $.getJSON('http://www.notesaround.com/api/notes', function (notes, success, xhr, handle) {
+                    for (var note in notes) {
                         if (notes[note].note) {
                             that.displayNote(notes[note]);
                         }
@@ -70,7 +68,6 @@ var app =  new function () {
                 icon: 'marker.png',
                 title : note.note
             });
-            me.markers.push(noteMarker);
         }
     }
 }();
