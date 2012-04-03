@@ -1,4 +1,5 @@
 import unittest
+import random
 
 __author__ = 'Tiago Pais'
 
@@ -23,9 +24,16 @@ class TestWebSockets(unittest.TestCase):
         ws.connect()
         ws.close()
 
-    def test_send(self):
+    def test_send_echo(self):
 
         ws = EchoClient('ws://websockets.notesaround.com:81/ws/echo')
         ws.connect()
         ws.send("Here I am....")
+        ws.close()
+
+    def test_send_note(self):
+
+        ws = EchoClient('ws://websockets.notesaround.com:81/ws/note')
+        ws.connect()
+        ws.send('{"note" : "Note test", "loc" : [%s, %s]}' % (random.uniform(-90,90), random.uniform(-180,180)))
         ws.close()

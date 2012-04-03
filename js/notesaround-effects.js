@@ -34,7 +34,6 @@ NotesAround_FX = {
         // Periodically check the position and fire
         // if the change is greater than the sensitivity
         setInterval(function () {
-
             var change = Math.abs(this.last_x-this.last_x2+
                 this.last_y-this.last_y2+
                 this.last_z-this.last_z2);
