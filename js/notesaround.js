@@ -47,7 +47,7 @@ var app =  new function () {
                                     }
                                 });
 
-            socket = new WebSocket('ws://websockets.notesaround.com:81/ws/note');
+            socket = new WebSocket('ws://notesaround.com:81/ws/note');
             socket.onopen = function(event) {
                 console.log('Opened Connection to Note');
             };
