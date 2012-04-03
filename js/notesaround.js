@@ -76,7 +76,7 @@ var app =  new function () {
                     me.markers[i].setMap(null);
                     me.markers[i] = null;
                 }
-               me.length = 0;
+               me.markers = [];
             }
         },
 
@@ -172,7 +172,7 @@ var app =  new function () {
         },
 
         aboutUs : function() {
-            NOTESAROUND_ABOUT.showAbout(me.markers,me.appMap);
+            NOTESAROUND_ABOUT.showAbout(me.appMap);
         }
     }
 }();

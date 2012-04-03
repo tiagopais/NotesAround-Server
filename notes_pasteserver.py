@@ -1,3 +1,4 @@
 from bottle import run, PasteServer
+import notes_server
 
-run(server=PasteServer,host='127.0.0.1',port=8080)
+run(server=PasteServer,host='localhost')

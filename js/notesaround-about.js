@@ -32,37 +32,54 @@ NOTESAROUND_ABOUT = function() {
                       "Always knows the best place for anything in Lisbon, or knows the right person to find it."+
                      "The note she would like to drop: x is the new y.";
 
-    var about = this;
-    var aboutMarkers = [];
-    var running = false;
+    var me = this;
+
     return {
 
-         showAbout : function(markers,map) {
-             app.clearMarkers();
-             if(aboutMarkers.length == 0) {
-                 this.setMarker('Fabio','img/pic_fn.jpg',fabioText,posFabio,map, markers);
-                 this.setMarker('Tiago','img/pic_tp.jpg',tiagoText,posTiago,map, markers);
-                 this.setMarker('Mariana','img/pic_ms.jpg',marianaText,posMariana,map, markers);
-                 this.setMarker('Bruno','img/pic_bt.jpg',brunoText,posBruno,map, markers);
-                 this.setMarker('Pedro','img/pic_pa.jpg',alvesText,posAlves,map, markers);
-             } else {
-                 for(var marker in aboutMarkers) {
-                     aboutMarkers[marker].setMap(map);
+         showAbout : function(map) {
+             me.visible = !me.visible;
+             if(me.visible) {
+                 app.clearMarkers();
+                 if(!me.aboutMarkers) {
+                     me.aboutMarkers = [];
+                     this.initMarkers(map);
                  }
-             }
 
-             map.panTo(aboutMarkers[aboutMarkers.length-1].getPosition());
+                 this.displayMarkers(map);
+    //             this.startAnimation(map);
+             } else {
+                 this.hideAbout();
+             }
+         },
+
+         initMarkers : function(map){
              map.setZoom(3);
-             running = true;
-             var pos = aboutMarkers.length-1;
+             this.addMarker('Fabio','img/pic_fn.jpg',fabioText,posFabio,map);
+             this.addMarker('Tiago','img/pic_tp.jpg',tiagoText,posTiago,map);
+             this.addMarker('Mariana','img/pic_ms.jpg',marianaText,posMariana,map);
+             this.addMarker('Bruno','img/pic_bt.jpg',brunoText,posBruno,map);
+             this.addMarker('Pedro','img/pic_pa.jpg',alvesText,posAlves,map);
+         },
+
+         displayMarkers : function(map) {
+             for(var marker in me.aboutMarkers) {
+                 me.aboutMarkers[marker].setMap(map);
+             }
+         },
+
+         startAnimation : function(map) {
+             map.panTo(me.aboutMarkers[me.aboutMarkers.length-1].getPosition());
+             map.setZoom(3);
+             me.running = true;
+             var pos = me.aboutMarkers.length-1;
 
              var jump = function(pos) {
                  if(pos < 0) {
-                     pos = aboutMarkers.length-1;
+                     pos = me.aboutMarkers.length-1;
                  }
 
                  if(running) {
-                     map.panTo(aboutMarkers[pos].getPosition());
+                     map.panTo(me.aboutMarkers[pos].getPosition());
                      map.setZoom(3);
                      setTimeout(jump(pos--),8000);
                  }
@@ -70,9 +87,7 @@ NOTESAROUND_ABOUT = function() {
              setTimeout(jump(pos),8000);
          },
 
-
-
-         setMarker : function(name,imgURL, description,pos, map, markers) {
+         addMarker : function(name,imgURL, description,pos, map) {
              var noteMarker = new google.maps.Marker({
                  position: pos,
                  map: map,
@@ -80,7 +95,7 @@ NOTESAROUND_ABOUT = function() {
                  icon: 'img/marker.png',
                  title : name
              });
-             aboutMarkers.push(noteMarker);
+             me.aboutMarkers.push(noteMarker);
              var contentString = '<div id="content">' +
                  '<div id="imgContent" class="imgContent"><a href="' + imgURL + '" target="_blank"><img src="' + imgURL + '"></a></div>' +
                  '<div id="bodyContent" class="bodyContent">' + description + '</div>' +
@@ -91,12 +106,12 @@ NOTESAROUND_ABOUT = function() {
          },
 
          hideAbout : function() {
-             if (aboutMarkers) {
-                 for (var i = 0; i <aboutMarkers.length; i++ ) {
-                     console.log("Clearing... " + aboutMarkers[i] + " -> " + aboutMarkers[i].title);
-                     aboutMarkers[i].setMap(null);
-                     running = false;
+             if (me.aboutMarkers) {
+                 for (var i = 0; i < me.aboutMarkers.length; i++ ) {
+                     console.log("Clearing... " + me.aboutMarkers[i] + " -> " + me.aboutMarkers[i].title);
+                     me.aboutMarkers[i].setMap(null);
                  }
+                 me.running = false;
              }
          }
     }
