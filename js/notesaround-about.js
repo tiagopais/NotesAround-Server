@@ -74,6 +74,7 @@ NOTESAROUND_ABOUT = function() {
              }
          },
 
+
          startAnimation : function(map) {
              app.panTo(me.aboutMarkers[me.aboutMarkers.length-1].getPosition());
              me.running = true;
