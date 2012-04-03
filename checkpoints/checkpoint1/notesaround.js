@@ -1,4 +1,5 @@
 var app = {
+
 	init: function () {
 		var myOptions = {
 			center: new google.maps.LatLng(-34.397, 150.644),
