@@ -19,7 +19,6 @@ var app =  new function () {
             me.appMap = new google.maps.Map(document.getElementById("map_canvas"),myOptions);
             this.updateCurrentPosition();
             this.fetchNotes();
-            NotesAround_FX.bindToAccelerometer(NotesAround_FX.tilt);
         },
 
         updateCurrentPosition : function() {
@@ -49,16 +48,14 @@ var app =  new function () {
         },
 
         fetchNotes : function() {
-            $.ajax({
-                url: 'http://www.notesaround.com/api/notes',
-                context: document.body
-            }).done(function (notes, success, xhr, handle) {
-                    for (note in notes) {
-                        if (notes[note].note) {
-                            that.displayNote(notes[note]);
-                        }
+            var that = this;
+            $.getJSON('http://www.notesaround.com/api/notes', function (notes, success, xhr, handle) {
+                for (var note in notes) {
+                    if (notes[note].note) {
+                        that.displayNote(notes[note]);
                     }
-                });
+                }
+            });
         },
 
         displayNote: function(note) {
@@ -71,7 +68,29 @@ var app =  new function () {
                 icon: 'marker.png',
                 title : note.note
             });
-            me.markers.push(noteMarker);
+
+            return noteMarker;
+        },
+
+        addNewNote: function() {
+            this.updateCurrentPosition();
+            var that = this;
+            var postBox = $("#textToPost");
+            var post = postBox.val();
+
+            var noteAsJsonString = JSON.stringify({ 'note' : post , 'loc': [me.currentPosition.lat(), me.currentPosition.lng()] })
+            $.post("http://notesaround.com/api/note", 'note=' + noteAsJsonString,
+                   function (new_note_as_string) {
+                       var new_note = jQuery.parseJSON(new_note_as_string);
+
+                       if (new_note.note) {
+                           var noteMarker = that.displayNote(new_note);
+
+                           noteMarker.setAnimation(google.maps.Animation.BOUNCE);
+                       }
+                   });
+
+            postBox.val('');
         }
     }
 }();

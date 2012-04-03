@@ -2,7 +2,7 @@ var app =  new function () {
     return {
         init : function() {
 
-            var socket = new WebSocket('ws://websockets.notesaround.com:81/ws/echo');
+            var socket = new WebSocket('ws://127.0.0.1:9090/ws/echo');
             socket.onopen = function(event) {
                 socket.send('Hello, Opensoft!');
             };

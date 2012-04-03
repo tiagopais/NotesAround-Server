@@ -24,7 +24,7 @@ NotesAround_FX = {
         }
     },
 
-    eraseOnTilt : function(accx,accy,accz) {
+    tilt : function(accx,accy,accz) {
         var sensitivity = 31;
 
         this.last_x = accx;
@@ -34,12 +34,13 @@ NotesAround_FX = {
         // Periodically check the position and fire
         // if the change is greater than the sensitivity
         setInterval(function () {
+
             var change = Math.abs(this.last_x-this.last_x2+
                 this.last_y-this.last_y2+
                 this.last_z-this.last_z2);
 
             if (change > sensitivity) {
-                app.bounceMarkers();
+                console.log('Tilt!');
             }
 
             // Update new position
