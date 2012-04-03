@@ -173,6 +173,11 @@ var app =  new function () {
 
         aboutUs : function() {
             NOTESAROUND_ABOUT.showAbout(me.appMap);
+        },
+        panTo : function (location) {
+            me.appMap.setZoom(3);
+            me.appMap.panTo(location);
+            me.appMap.setZoom(5);
         }
     }
 }();

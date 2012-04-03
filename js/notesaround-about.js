@@ -53,12 +53,19 @@ NOTESAROUND_ABOUT = function() {
          },
 
          initMarkers : function(map){
-             map.setZoom(3);
-             this.addMarker('Fabio','img/pic_fn.jpg',fabioText,posFabio,map);
-             this.addMarker('Tiago','img/pic_tp.jpg',tiagoText,posTiago,map);
+             map.setZoom(5);
+
+             this.addMarker('Pedro','img/pic_pa.jpg',alvesText,posAlves,map);
              this.addMarker('Mariana','img/pic_ms.jpg',marianaText,posMariana,map);
              this.addMarker('Bruno','img/pic_bt.jpg',brunoText,posBruno,map);
+             this.addMarker('Fabio','img/pic_fn.jpg',fabioText,posFabio,map);
+             this.addMarker('Bruno','img/pic_bt.jpg',brunoText,posBruno,map);
+             this.addMarker('Mariana','img/pic_ms.jpg',marianaText,posMariana,map);
              this.addMarker('Pedro','img/pic_pa.jpg',alvesText,posAlves,map);
+             this.addMarker('Tiago','img/pic_tp.jpg',tiagoText,posTiago,map);
+
+
+
          },
 
          displayMarkers : function(map) {
@@ -67,26 +74,25 @@ NOTESAROUND_ABOUT = function() {
              }
          },
 
+
          startAnimation : function(map) {
-             map.panTo(me.aboutMarkers[me.aboutMarkers.length-1].getPosition());
-             map.setZoom(3);
+             app.panTo(me.aboutMarkers[me.aboutMarkers.length-1].getPosition());
              me.running = true;
-             var pos = me.aboutMarkers.length-1;
-
-             var jump = function(pos) {
-                 if(pos < 0) {
-                     pos = me.aboutMarkers.length-1;
-                 }
-
-                 if(running) {
-                     map.panTo(me.aboutMarkers[pos].getPosition());
-                     map.setZoom(3);
-                     setTimeout(jump(pos--),8000);
-                 }
-             };
-             setTimeout(jump(pos),8000);
+             var pos = me.aboutMarkers.length-2;
+             setTimeout("NOTESAROUND_ABOUT.jump(" + pos + ")",5000);
          },
 
+         jump: function(pos) {
+             if(pos < 0) {
+                 pos = me.aboutMarkers.length-1;
+             }
+
+             if(running) {
+                 app.panTo(me.aboutMarkers[pos].getPosition());
+                 pos = pos -1;
+                 setTimeout("NOTESAROUND_ABOUT.jump(" + pos + ")",5000);
+             }
+         },
          addMarker : function(name,imgURL, description,pos, map) {
              var noteMarker = new google.maps.Marker({
                  position: pos,
