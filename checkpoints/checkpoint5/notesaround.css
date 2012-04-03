@@ -1,0 +1,44 @@
+html {
+    height: 100%
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0
+}
+
+#map_canvas {
+    height: 100%
+}
+
+.postBox {
+    position: absolute;
+    background-color: rgba(100, 100, 110, 0.6);
+    background: rgba(100, 100, 110, 0.6);
+    color: rgba(100, 100, 110, 0.6);
+
+    right: 80px;
+    bottom: 50px;
+    height: 100px;
+    width: 30%;
+
+    padding-left: 20px;
+    padding-right: 20px;
+
+    z-index: 100;
+}
+
+#postBox {
+    float: left;
+    width: 80%;
+}
+
+#postBox input {
+    width: 80%;
+}
+
+#buttons {
+    float: left;
+    width: 20%;
+}
