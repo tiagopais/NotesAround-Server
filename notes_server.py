@@ -29,7 +29,7 @@ def get_note(note):
     response.content_type = 'application/json'
 
     notes = get_notes_collection()
-    single_note = notes.find({"_id": ObjectId(note)})
+    single_note = notes.find_one({"_id": ObjectId(note)})
 
     if not single_note:
       return json.dumps({})
