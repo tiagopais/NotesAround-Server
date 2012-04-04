@@ -7,25 +7,25 @@ NOTESAROUND_ABOUT = function() {
     var posMariana = new google.maps.LatLng(-23.820133578465683, 31.446990966796875);
     var posOpentour = new google.maps.LatLng(38.706932, -9.1356321);
 
-    var fabioText = "The army has the marines, the navy has the seals, we have F�bio. " +
-                    "When the going gets though, send F�bio ahead and get out of the way. " +
+    var fabioText = "The army has the marines, the navy has the seals, we have Fábio. " +
+                    "When the going gets though, send Fábio ahead and get out of the way. " +
                     "He kicks ass coding, compared to him the rest of the team are choir boys." +
                     "His first daily note: Impossible is just a big word.";
 
-    var tiagoText = "Is a perfectionist. If one day he went to the moon, he would look for Armstrong�s footprint," +
-                    " and retouch it. His dictionary doesn�t have the word good, only awesome. " +
+    var tiagoText = "Is a perfectionist. If one day he went to the moon, he would look for Armstrong's footprint," +
+                    " and retouch it. His dictionary doesn't have the word good, only awesome. " +
                     "He is not an Architect, but is still looking for the right word." +
                     "Permanent mental note: I will either find a way, or make one.";
 
-    var brunoText = "He is a part-time super-hero, for three times he found the Alzheimer�s cure, but always forgot it." +
-                    " He also travelled back in time, to stop an army of Justin Bieber�s mutant clones, " +
+    var brunoText = "He is a part-time super-hero, for three times he found the Alzheimer's cure, but always forgot it." +
+                    " He also travelled back in time, to stop an army of Justin Bieber's mutant clones, " +
                     "from taking over the world. When he is not saving the world and so, he kicks ass coding."+
                     "His note would be: Whenever people agree with me I always feel like I must be wrong.";
 
     var alvesText = "He is the master, the real guru, with red plastic framed glasses and all. " +
                     "Has a thing for anything that combines social and technology. Loves a good debate, " +
                     "and the way he dominates the latin dances is unnatural for a geek." +
-                    "Famous note: What are we doing here? We�re changing the world!";
+                    "Famous note: What are we doing here? We're changing the world!";
 
     var marianaText = "A management/ HR geek. Presents herself as a professional problem solver, " +
                       "but what she really is: a professional lobbyist and shenanigans maker. " +
@@ -55,14 +55,14 @@ NOTESAROUND_ABOUT = function() {
          initMarkers : function(map){
              map.setZoom(5);
 
-             this.addMarker('Pedro','img/pic_pa.jpg',alvesText,posAlves,map);
-             this.addMarker('Mariana','img/pic_ms.jpg',marianaText,posMariana,map);
-             this.addMarker('Bruno','img/pic_bt.jpg',brunoText,posBruno,map);
-             this.addMarker('Fabio','img/pic_fn.jpg',fabioText,posFabio,map);
-             this.addMarker('Bruno','img/pic_bt.jpg',brunoText,posBruno,map);
-             this.addMarker('Mariana','img/pic_ms.jpg',marianaText,posMariana,map);
-             this.addMarker('Pedro','img/pic_pa.jpg',alvesText,posAlves,map);
-             this.addMarker('Tiago','img/pic_tp.jpg',tiagoText,posTiago,map);
+             this.addMarker('Pedro','/static/img/pic_pa.jpg',alvesText,posAlves,map);
+             this.addMarker('Mariana','/static/img/pic_ms.jpg',marianaText,posMariana,map);
+             this.addMarker('Bruno','/static/img/pic_bt.jpg',brunoText,posBruno,map);
+             this.addMarker('Fabio','/static/img/pic_fn.jpg',fabioText,posFabio,map);
+             this.addMarker('Bruno','/static/img/pic_bt.jpg',brunoText,posBruno,map);
+             this.addMarker('Mariana','/static/img/pic_ms.jpg',marianaText,posMariana,map);
+             this.addMarker('Pedro','/static/img/pic_pa.jpg',alvesText,posAlves,map);
+             this.addMarker('Tiago','/static/img/pic_tp.jpg',tiagoText,posTiago,map);
 
 
 
