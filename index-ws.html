@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Notes Around</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+
+    <link rel="stylesheet" type="text/css" href="static/css/notesaround.css" />
+    <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Averia+Sans+Libre'>
+
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAjeEi63VJhxfGjuIrf6SEEc73LPYJx99o&sensor=true"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="static/js/notesaround-effects.js"></script>
+    <script type="text/javascript" src="static/js/notesaround-about.js"></script>
+    <script type="text/javascript" src="static/js/notesaround-search.js"></script>
+    <script type="text/javascript" src="static/js/notesaround-ws.js"></script>
+    <script type="text/javascript" src="static/js/jquery-1.7.1.js"></script>
+    <script type="text/javascript" src="static/js/jquery.periodicalupdater.js"></script>
+</head>
+<body onload="app.init()">
+<a href="#" onclick="app.aboutUs()"><h1>Notes Around</h1></a>
+<div id="map_canvas" style="width:100%; height:100%"></div>
+
+<div class="postBox">
+    <h3>Drop your note...</h3>
+    <div id="postBox">
+        <input type="text" id="textToPost" name="textToPost" placeholder="Type something to post"/>
+    </div>
+    <div id="buttons">
+        <input type="button" class="submitButton" onclick="app.putMarker()" value="Post"/>
+    </div>
+    <div style="float: none"></div>
+</div>
+</body>
+</html>
