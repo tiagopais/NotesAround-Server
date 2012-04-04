@@ -11,6 +11,7 @@ class NoteAPIHandler(tornado.web.RequestHandler):
 
     def get(self, note_id):
         self.set_header('Content-Type', 'application/json')
+        self.set_header('Access-Control-Allow-Origin', '*')
 
         notes = get_notes_collection()
         single_note = notes.find_one({"_id": ObjectId(note_id)})
@@ -22,6 +23,7 @@ class NoteAPIHandler(tornado.web.RequestHandler):
 
     def post(self):
         self.set_header('Content-Type', 'application/json')
+        self.set_header('Access-Control-Allow-Origin', '*')
 
         newnote = self.get_argument('note')
         newnote_json = json.loads(newnote)
@@ -36,6 +38,7 @@ class NotesAPIHandler(tornado.web.RequestHandler):
 
     def get(self):
         self.set_header('Content-Type', 'application/json')
+        self.set_header('Access-Control-Allow-Origin', '*')
 
         notes = get_notes_collection()
 
