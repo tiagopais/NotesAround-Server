@@ -1,28 +1,26 @@
-var app =  new function () {
-    var myOptions = {
-        center: new google.maps.LatLng(-34.397, 150.644),
-        zoom: 5,
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-        mapTypeControl: false,
-        zoomControl: true,
-        panControl : false,
-        rotateControl : false,
-        scaleControl : false,
-        overviewMapControl : false
-    };
-    var me = this;
-    var appMap;
-
-    return {
+var app = {
         init : function() {
-            var that = this;
-            me.appMap = new google.maps.Map(document.getElementById("map_canvas"),myOptions);
+            var myOptions = {
+                center: new google.maps.LatLng(-34.397, 150.644),
+                zoom: 5,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                mapTypeControl: false,
+                zoomControl: true,
+                panControl: false,
+                rotateControl: false,
+                scaleControl: false,
+                overviewMapControl: false
+            };
+
+            this.appMap = new google.maps.Map(document.getElementById("map_canvas"),myOptions);
             this.updateCurrentPosition();
             this.fetchNotes();
             NotesAround_FX.bindToAccelerometer(NotesAround_FX.tilt);
         },
 
         updateCurrentPosition : function() {
+            var me = this;
+
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function( position ){
                         // Log that this is the initial position.
@@ -49,18 +47,18 @@ var app =  new function () {
         },
 
         fetchNotes : function() {
-            var that = this;
+            var me = this;
             $.getJSON('http://www.notesaround.com/api/notes', function (notes, success, xhr, handle) {
                 for (var note in notes) {
                     if (notes[note].note) {
-                        that.displayNote(notes[note]);
+                        me.displayNote(notes[note]);
                     }
                 }
             });
         },
 
         displayNote: function(note) {
-            var that = this;
+            var me = this;
             var noteMarker = new google.maps.Marker({
                 position: new google.maps.LatLng(note.loc[0],
                     note.loc[1]),
@@ -69,11 +67,12 @@ var app =  new function () {
                 icon: 'marker.png',
                 title : note.note
             });
+            return noteMarker;
         },
 
         addNewNote: function() {
             this.updateCurrentPosition();
-            var that = this;
+            var me = this;
             var postBox = $("#textToPost");
             var post = postBox.val();
 
@@ -83,7 +82,7 @@ var app =  new function () {
                        var new_note = jQuery.parseJSON(new_note_as_string);
 
                        if (new_note.note) {
-                           var noteMarker = that.displayNote(new_note);
+                           var noteMarker = me.displayNote(new_note);
 
                            noteMarker.setAnimation(google.maps.Animation.BOUNCE);
                        }
@@ -91,5 +90,4 @@ var app =  new function () {
 
             postBox.val('');
         }
-    }
-}();
+};
